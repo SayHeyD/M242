@@ -16,4 +16,4 @@ Die Web-App ist für das logging der Einträge verantwortlich. Ausserdem kann ü
 
 Der Alarm, zeigt sich ersten indem die Temperaturanzeige in der Web-App Rot angezegit wird und zweitens auf dem Board ein entsprechendes LED eingeschaltet wird. Ebenfalls wird auch auf dem OLED-Display eine NAchricht ausgegeben die zeigt, was der Feherl nun genau bedeutet.
 
-Weitere Informationen zu den Error-States finden Sie (hier)[https://github.com/SayHeyD/M242/tree/main/IoTKitv3#Error-States].
+Weitere Informationen zu den Error-States finden Sie [hier](https://github.com/SayHeyD/M242/tree/main/IoTKitv3#Error-States).
