@@ -5,7 +5,7 @@ Hier ist die Dokumentation zum Modul 242 der Gruppe 3 (Zellweger, Docampo, Lippu
 # Inhalt
 
 * [IoTKitV3](https://github.com/SayHeyD/M242/tree/main/IoTKitv3)
-* [Raspberry Pi](https://github.com/SayHeyD/M242/tree/main/Raspberry%20Pi)
+* [Load Balancer](https://github.com/SayHeyD/M242/tree/main/Load%20Balancer)
 * [Cloud](https://github.com/SayHeyD/M242/tree/main/Cloud)
 
 # Unser Service
