@@ -18,7 +18,7 @@ Die Serial Driver müssen auf MacOS nicht installiert werden. Diese kommen vorin
 
 Connection:  ```cu -l /dev/cu.[devicename]```
 
-Das IoTKitV3 wird von meinem MavBook als "usbmodem" erkannt.
+Das IoTKitV3 wird von meinem MacBook als "usbmodem" erkannt.
 
 <img src="https://github.com/SayHeyD/M242/raw/main/Lernumgebung/Bildschirmfoto%202021-01-08%20um%2017.34.02.png" height="500px" alt="Screenshot des Namens">
 
