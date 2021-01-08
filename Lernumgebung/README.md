@@ -18,9 +18,9 @@ Die Serial Driver müssen auf MacOS nicht installiert werden. Diese kommen vorin
 
 Connection:  ```cu -l /dev/cu.[devicename]```
 
-Das IoTKitV3 wird von meinem MavBook als "usbmodem" erkannt.
+Das IoTKitV3 wird von meinem MacBook als "usbmodem" erkannt.
 
-<img src="" alt="Screenshot des Namens">
+<img src="https://github.com/SayHeyD/M242/raw/main/Lernumgebung/Bildschirmfoto%202021-01-08%20um%2017.34.02.png" height="500px" alt="Screenshot des Namens">
 
 ### Windows
 
@@ -30,6 +30,8 @@ Das Terminalprogramm wird dazu verwendet um den Konsolen-Output des Boards auszu
 
 ### MacOS
 
-Auf MacOS verwenden wir [ITerm2](https://iterm2.com/) als Terminalprogramm, da es einige Vorteile zum Systemeigenen Terminalprogramm hat.
+Auf MacOS verwenden wir [iTerm2](https://iterm2.com/) als Terminalprogramm, da es einige Vorteile zum Systemeigenen Terminalprogramm hat.
+
+iTerm2 kann auf ihrer [Homepage](https://iterm2.com/) heruntergeladen werden. In der Zip-Datei gibt es dann die ```iTerm2.app``` die man einfach in den Programme Ordner ziehen muss. Danach ist die Installation bereits abgeschlossen. 
 
 ### Windows
