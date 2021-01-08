@@ -4,11 +4,12 @@ Hier ist die Dokumentation zum Modul 242 der Gruppe 3 (Zellweger, Docampo, Lippu
 
 # Inhalt
 
+* [Lernumgebung](https://github.com/SayHeyD/M242/tree/main/Lernumgebung)
 * [IoTKitV3](https://github.com/SayHeyD/M242/tree/main/IoTKitv3)
 * [Load Balancer](https://github.com/SayHeyD/M242/tree/main/Load%20Balancer)
 * [Cloud](https://github.com/SayHeyD/M242/tree/main/Cloud)
 
-# Unser Service
+# Unser Service (K5)
 
 Wir haben uns dafür entschieden einen Temperatur-Alarm mit dem IoT-Board umzusetzen. Das bedeutet, dass wir die Temperatur mittels des Sensors auf dem Board lesen und dann per REST API an eine Web-App übermitteln wollen.
 
