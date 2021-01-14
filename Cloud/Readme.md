@@ -74,9 +74,55 @@ PHP ist jetzt ready-to-use und wir können zum nächsten Schritt weiter gehen.
 
 #### Composer
 
+[Composer](https://getcomposer.org/) ist eine Paketverwaltungs-Software für PHP. Um die ganzen Abhängigkeiten der Laravel-Applikation zu isntallieren benötigen wir dieses Tool.
 
+Um Composer isntallieren zu könenn muss PHP installiert sein.
+
+Als erstes laden wir das setup script herunter und überprüfen den hash. Der hash dient zur validierung und generell würden wir empfehlen immer der Installationsanleitung auf der [Website von Composer](https://getcomposer.org/download/) zu folgen, da dort auch immer der aktuellste Hash ist. Hier wird das Hash-Checking jedoch mit dokumentiert.
+
+Herunterladen des setup scripts:
+
+```php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"```
+
+Überprüfen des Hash:
+
+```php -r "if (hash_file('sha384', 'composer-setup.php') === '756890a4488ce9024fc62c56153228907f1545c228516cbf63f885e036d37e9a59d27d63f46af1d4d07ee0f76181c7d3') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"```
+
+Nun führen wir das Setup aus. Normalerweise würde composer nun die datei "composer.phar" direkt in dieses Verzeichnis ablegen, jedoch möchten wir das wir composer global über dem Befehl ````composer``` ausführen können, deshalb geben wir dem Installationscript noch 2 Parameter mit:
+
+```php composer-setup.php --install-dir=/usr/local/bin --filname=/composer```
+
+Nun ist composer unter folgendem Pfad installiert: ```/usr/local/bin/composer```
+
+Da der Pfad ```/usr/local/bin``` Standardmässig in der ```$PATH``` variable steht, sollten wir composer nun über folgenden Befehl ausführen können. Um die Installation zu testen führen wir also folgendes aus:
+
+```composer```
+
+Nun können wir die setup datei löschen:
+
+```rm composer-setup.php```
 
 #### Nodejs
+
+Node.js an sich wird für die Laravel-Appliaktion nicht benötigt, jedoch brauchen wir einen Package-Manger für javascript Pakete, um das Front-End builden zu können. Hier verwenden wir npm welcher nur mit Node.js zusammen installiert wird. In unserem Fall haben wir Node 14.x LTS verwendet.
+
+Um die Installationsdatei für Node.js herunterladen zu können, führen wir folgenden Befehl aus:
+
+```curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh```
+
+Nun führen wir das script aus um die nötigen PPAs zu installieren:
+
+```bash nodesource_setup.sh```
+
+Danch updaten wir die repositories:
+
+```apt update```
+
+und dann installeiren wir nodejs:
+
+```apt install nodejs -y```
+
+Nun können wir mit ```npm -v``` überprüfen ob npm installiert wurde.
 
 #### Laravel application deploy
 
