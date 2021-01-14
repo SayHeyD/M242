@@ -25,7 +25,41 @@ Nun aktivieren wir noch IP Hash. IP Hash ist dafür verantwortlich, dass wenn ei
 Unser ```/etc/nginx/sites-available/default``` sieht nach der Umkonfiguration nun so aus:
 
 ```nginx
+upstream alarm {
+	ip_hash;
+	server alarm1.davidlab.ch:443;
+	server alarm2.davidlab.ch:443;
+}
 
+server {
+
+	server_name alarm.davidlab.ch;
+
+	server_tokens off;
+
+	location / {
+		proxy_set_header Host $host;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_pass https://alarm$request_uri;
+	}
+
+	listen 443 ssl; # managed by Certbot
+	ssl_certificate /etc/letsencrypt/live/alarm.davidlab.ch/fullchain.pem; # managed by Certbot
+	ssl_certificate_key /etc/letsencrypt/live/alarm.davidlab.ch/privkey.pem; # managed by Certbot
+	include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+	ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+}
+
+server {
+	if ($host = alarm.davidlab.ch) {
+		return 301 https://$host$request_uri;
+	} # managed by Certbot
+
+	listen 80;
+	server_name alarm.davidlab.ch;
+	return 404; # managed by Certbot
+}
 ```
 
 Danach kann man die Änderungen mit ```nginx -t``` überprüfen und falls der Test erfolgreich war den Service neu starten ```service nginx restart```.
