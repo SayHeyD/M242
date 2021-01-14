@@ -6,7 +6,7 @@ Der Cloud-Service läuft auf 2 Applikationsinstanzen, einem Load-Balancer und 2 
 
 ## Eigener Dienst (K5)
 
-Der eigene Dienst läuft auf CLoud-Sevrer, das deployment ist jedoch nicht komplett automatisiert, da uns im Rahmen des Moduls die Zeit dafür fehlte. In einer Produktionsumgebung würden wir hier eine automatisierung erstellen um den Ausbau des Dienstes zu erelichtern.
+Der eigene Dienst läuft auf Cloud-Sevrer, das deployment ist jedoch nicht komplett automatisiert, da uns im Rahmen des Moduls die Zeit dafür fehlte. In einer Produktionsumgebung würden wir hier eine automatisierung erstellen um den Ausbau des Dienstes zu erelichtern.
 
 ### Netzwerk
 
@@ -17,6 +17,85 @@ Alle Server sind öffentlich über die gezeigten Domains erreichbar. Dies ist hi
 ### Load-Balancer
 
 Die Dokumentation der [Load Balancer](https://github.com/SayHeyD/M242/tree/main/Load%20Balancer) ist in ihrem eigenen Teil.
+
+### Datenbank-Server
+
+Der Datenbank-Server ist ein CX11 Cloud-Server, der bei Hetzner gehostet wird.
+
+Auch hier haben wir Ubuntu 20.04 als OS verwendet.
+
+Als Datenbank haben wir uns für MySQL entschieden, MySQL ist über Ubuntu leicht isntallierbar:
+
+```apt install mysql-server -y```
+
+Nun können wir noch die konfiguration des MySQL servers anpassen um den Server alle Anfragen bearbeiten zu lassen. Hierfür müssen wir folgende Datei editieren:
+
+```/etc/mysql...```
+
+Dort ändern wird ```mysql_bind_address``` und ```mysqlx_bind_address``` zu ```0.0.0.0```. Danach speichern wir die Datei.
+
+Danach müssen wir den Service neu starten:
+
+```service mysql restart```
+
+Nun können wir die benötigten Benutzer und Datenbanken anlegen.
+
+In das MySQL-CLI wechseln wir mit: ````mysql -u root -p```
+
+Für den Benutzer Root ist standaardmässig kein Passwort gesetzt, bei der Frage nach dem Passwort also einfach ```ENTER``` drücken.
+
+Als erstes legen wir die Datenbank an:
+
+```sql
+CREATE DATABASE alarm_setter;
+```
+
+Danach legen wir den Benutzer für die Applikationsinstanzen an. Da hier alles vom Internet aus erreichbar ist, werden wir 2 Benutzer mit 2 verschiedenen Hosts eintragen. Für einfach replizirbare Instazen würde man hier alles in einem eigenen Netwzerk aufsetzen und den Zugang des Benutzers auf allen IPs zulassen:
+
+```sql
+CREATE USER 'alarm-setter'@'[IP_INSTANCE_ONE]' IDENTIFIED BY '[YOUR_PASSWORD]';
+```
+
+```sql
+CREATE USER 'alarm-setter'@'[IP_INSTANCE_TWO]' IDENTIFIED BY '[YOUR_PASSWORD]';
+```
+
+Um in einer Öffentlich erreichbaren Laravel-Applikation die Sicherheits zu steigern, würde man hier noch einen Benutzer erstellen, der nur für die Migrationen zuständig ist. Somit hätte man einen Benutzer für den Allgemeinen betrieb der nur 4 Berechtigungen hat und einen Benutzer der die Migrationen vornimmt, welcher mehr Berechtigungen hat. In userem Fall haben wir zur einfachheit nur einen Benutzer erstellt, dieser hat die Berechtigungen des Migrationsbenutzer. Fall sman dieses 2 Nutzer System benutzern möchte muss der Produciton-User nur folgende Berechtigungen haben:
+
+- SELECT
+- INSERT
+- UPDATE
+- DELETE
+
+Der Migrationsbenutzer benötigt folgende Berchtigungen:
+
+- ALTER
+- CREATE
+- DELETE
+- DROP
+- INDEX
+- INSERT
+- SELECT
+- UPDATE
+- REFERENCES
+
+Nun setzen wir also die Berechtigungen der Benutzer:
+
+```sql
+GRANT ALTER, CREATE, DELETE, DROP, INDEX, SELECT, UPDATE, REFERENCES ON alarm_setter.* TO 'alarm-setter'@'[IP_INSTANCE_ONE]';
+```
+
+```sql
+GRANT ALTER, CREATE, DELETE, DROP, INDEX, SELECT, UPDATE, REFERENCES ON alarm_setter.* TO 'alarm-setter'@'[IP_INSTANCE_TWO]';
+```
+
+Danach müssen wir die Berechtigungen neu laden lassen:
+
+```sql
+FLUSH PRIVILEGES;
+```
+
+Nun ist die Konfiguration des MySQL-Servers abgeschlossen.
 
 ### Applikationsinstanzen
 
@@ -172,4 +251,8 @@ Nun können wir dem Ordner den neuen Besitzer ```www-data``` zuschreiben:
 
 Nun sollten alle Dateien im Ordner vom Web-Server verwaltbar sein.
 
-### Datenbank-Server
+##### Neue Benutzer
+
+Um einen Benutzer erstellen zu können, müssen wir im Verzeichnis der Appliaktion, also ```/var/www/alarm-setter``` folgenden Befehl ausführen:
+
+```php artisan ```
