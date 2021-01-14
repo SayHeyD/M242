@@ -66,6 +66,18 @@ Danach kann man die Änderungen mit ```nginx -t``` überprüfen und falls der Te
 
 Nun sollte die Applikation über die definierte Domain "alarm.davidlab.ch" erreichbar sein. Auf welchem Server man dann schlussendlich landet, sieht man standardmässig nicht. Bei dieser Appliaktion sieht man jedoch unten auf jeder Seite (ausser login) auf welchem Server man sich befindet. Dies wird gemacht um zu testen ob das Load Balancing korrekt funktioniert.
 
+### SSL zertifikat
+
+Um auch vom Client zum Load-Balancer eine sichere Verbindung zu gewährleisten müssen wir auch hier ein SSL Zertifikat installeiren. Hierfür haben wir auch Certbot verwendet.
+
+Certbot auf Ubuntu installieren: ```apt install certbot-python3-nginx -y```
+
+Danach müssen wir Certbot nur noch ausführen und den anweisungen folgen:
+
+```certbot```
+
+Auch hier haben wir den automatischen redirect von HTTP auf HTTPS aktiviert
+
 ### Verbindungsinformationen
 
 Die Verbindung zwischen Client udn Load-Balacner wird per HTTPS aufgebaut. Ebenfalls sind die Appliaktionsinstanzen über HTTPS abgesichert und der Traffic zwischen Load Balancer und Instanzen läuft auch über HTTPS.
