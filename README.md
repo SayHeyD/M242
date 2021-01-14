@@ -19,13 +19,39 @@ Wir hatten in der Schule bereits ein Modul in welchen wir einen Raspberry Pi ver
 
 ## Andi
 
-# Wichtige Lernschritte (K6)
+# Wichtige Lernschritte (K2)
 
 ## Moritz
 
 ## David
 
 Ich habe am meisten beim Programmieren der Applikation für den Mikroprozessor gelernt. Da ich nur Erfahrung in C# hatte und mir C++ erst einaml für ein par Stunden angeschaut hatte, konnte ich in diesem Modul mein Wissen was C++ betrifft vertiefen. Das was mich am meisten überrascht hat, aber im Nachinein natürlich völlig logisch ist, ist, dass ich das Zertifikat für einen HTTPS Request dem Mikroprozessor übergeben muss, da dieser wie die meisten Betriebssysteme keinen Vorinstallierten Zertifikatsspeicher hat. Ebenfalls konnte ich noch nie einen Load-Balancer konfigurieren und habe somit auch damit in diesem Modul meine ersten Erfahrungen damit gemacht.
+
+## Andi
+
+# Persönliche Lernentwicklung (K6)
+
+## Moritz
+
+## David
+
+Ich habe in diesem Modul vieles über Mikroprozessoren gelernt, dazu gehören:
+
+- Mikroprozessor vs CPU
+- Programmieren eines Mikroprozessors
+- Anwendungsgebiete von Mikroprozessoren
+- Man kann selbst Mikroprozessoren designen und drucken lassen
+- Mikroprozessoren haben keinen Certificate-Store 🙄
+
+Auch habe ich etwas über nginx gelernt, obwohl ich diesen Dienst schon lange benutze:
+
+- Nginx als Load balancer
+
+Auch konnte ich noch einiges über das Prinzip Laod Balancer lernen:
+
+- Prinzipien wie Round-Robin, least connected
+- IP Hash bei Laod Balancing
+- Sessionhandling einer Applikation muss beim load-balancing angepasst werden
 
 ## Andi
 
