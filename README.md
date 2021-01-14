@@ -29,6 +29,32 @@ Ich habe am meisten beim Programmieren der Applikation für den Mikroprozessor g
 
 ## Andi
 
+# Persönliche Lernentwicklung (K6)
+
+## Moritz
+
+## David
+
+Ich habe in diesem Modul vieles über Mikroprozessoren gelernt, dazu gehören:
+
+- Mikroprozessor vs CPU
+- Programmieren eines Mikroprozessors
+- Anwendungsgebiete von Mikroprozessoren
+- Man kann selbst Mikroprozessoren designen und drucken lassen
+- Mikroprozessoren haben keinen Certificate-Store 🙄
+
+Auch habe ich etwas über nginx gelernt, obwohl ich diesen Dienst schon lange benutze:
+
+- Nginx als Load balancer
+
+Auch konnte ich noch einiges über das Prinzip Laod Balancer lernen:
+
+- Prinzipien wie Round-Robin, least connected
+- IP Hash bei Laod Balancing
+- Sessionhandling einer Applikation muss beim load-balancing angepasst werden
+
+## Andi
+
 # Reflexion (K6)
 
 ## Moritz
