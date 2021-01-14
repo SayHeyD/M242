@@ -309,4 +309,4 @@ Nun sollten alle Dateien im Ordner vom Web-Server verwaltbar sein.
 
 Um einen Benutzer erstellen zu können, müssen wir im Verzeichnis der Appliaktion, also ```/var/www/alarm-setter``` folgenden Befehl ausführen:
 
-```php artisan ```
+```php artisan make:user "Vorname Nachname" "example@example.org" "Password"```
