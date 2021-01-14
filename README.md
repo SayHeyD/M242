@@ -19,7 +19,7 @@ Wir hatten in der Schule bereits ein Modul in welchen wir einen Raspberry Pi ver
 
 ## Andi
 
-# Wichtige Lernschritte (K2)
+# Wichtige Lernschritte (K6)
 
 ## Moritz
 
