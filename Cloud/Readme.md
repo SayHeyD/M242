@@ -34,7 +34,7 @@ Nun mussten wir die Instanzen noch konfigurieren. Hierfür konnten wir das [Ngin
 
 Die Konfiguration ist im File ```/etc/nginx/sites-available/default``` zu finden.
 
-Hier mussten wir nur noch die Angabe des ```server_name``` den jeweiligen Instanzen anpassen. Also ```alarm1.davidlab.ch``` und ```alarm2.davidlab.ch```.
+Hier mussten wir nur noch die Angabe des ```server_name``` den jeweiligen Instanzen anpassen. Also ```alarm1.davidlab.ch``` und ```alarm2.davidlab.ch```. Ausserdem noch den ```root``` welchen in beiden Isntanzen auf ```/var/www/alarm-setter/public``` gesetzt wurde.
 
 Auch hier überprüfen wir wieder die konfiguration mit ```nginx -t``` und starten den Service neu:
 
@@ -124,6 +124,52 @@ und dann installeiren wir nodejs:
 
 Nun können wir mit ```npm -v``` überprüfen ob npm installiert wurde.
 
+#### Git
+
+[Git](https://git-scm.com/) ist eine Versionsverwaltungssoftware, wird in diesem Fall jedoch nur gebraucht um die Applikation herunterzuladen. Um [Git](https://git-scm.com/) zu isntallieren führen wird folgenden Befehl aus:
+
+```apt install git -y```
+
 #### Laravel application deploy
+
+Um die Appliaktion nun auf den Servern zu isntallieren laden wir sie uns zuerst mit [Git](https://git-scm.com/) in das richtige Verzeichnis herunter:
+
+```cd /var/www``` und danach ```git clone https://github.com/SayHeyD/alarm-setter```
+
+Danach sollte im aktueleen Verzeichnis ein neuer Ordner mit dem namen "alarm-setter" existieren. Dort Navigieren wir nun hinein:
+
+```cd alarm-setter```
+
+Nun müssen wir alle benötigten Pakete installieren, in folgendem command sind die Befehl für die composer- und npm-packages zusammengefasst:
+
+```composer install && npm i```
+
+Nachdem alle Pakete installiert wurden können wir die ```.env``` Datei für Laravel anlegen:
+
+```cp .env.example .env```
+
+Nun müssen wir in der ```.env``` Datei folgende Angabena ausfüllen:
+
+Nach dem ausfüllen der ```.env``` Datei können wir den application-key generiern:
+
+```php artisan key:generate```
+
+Danach müssen wir die Datenbank migrieren:
+
+```php artisan migrate```
+
+Und zu guter letzt müssen wir noch das Front-End Builden:
+
+```npm run prod```
+
+Nun müssen wir nur noch die Berechtigungen des Ordners ändern, damit die applikation korrekt funktioniert. Dafür müssen wir in das ```/var/www``` verzeichnis zurück:
+
+```cd ..```
+
+Nun können wir dem Ordner den neuen Besitzer ```www-data``` zuschreiben:
+
+```chown www-data -R ./alarm-setter```
+
+Nun sollten alle Dateien im Ordner vom Web-Server verwaltbar sein.
 
 ### Datenbank-Server
