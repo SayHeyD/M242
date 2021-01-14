@@ -6,6 +6,8 @@ Der Cloud-Service läuft auf 2 Applikationsinstanzen, einem Load-Balancer und 2 
 
 ## Eigener Dienst (K5)
 
+Der eigene Dienst läuft auf CLoud-Sevrer, das deployment ist jedoch nicht komplett automatisiert, da uns im Rahmen des Moduls die Zeit dafür fehlte. In einer Produktionsumgebung würden wir hier eine automatisierung erstellen um den Ausbau des Dienstes zu erelichtern.
+
 ### Netzwerk
 
 <img src="https://github.com/SayHeyD/M242/raw/main/Cloud/Network.png" alt="Netzwerkdiagramm">
@@ -24,12 +26,58 @@ Nun mussten wir nur noch die benötiget Software Installieren:
 
 #### Web-Server (Nginx)
 
+Als Web-Server haben wir [nginx](https://www.nginx.com/) verwendet, diesen installiert man auf Ubuntu folgendermassen:
+
+```apt install nginx -y```
+
+Nun mussten wir die Instanzen noch konfigurieren. Hierfür konnten wir das [Nginx Template](https://laravel.com/docs/8.x/deployment#nginx) welches von Laravel bereitgestellt wird verwenden.
+
+Die Konfiguration ist im File ```/etc/nginx/sites-available/default``` zu finden.
+
+Hier mussten wir nur noch die Angabe des ```server_name``` den jeweiligen Instanzen anpassen. Also ```alarm1.davidlab.ch``` und ```alarm2.davidlab.ch```.
+
+Auch hier überprüfen wir wieder die konfiguration mit ```nginx -t``` und starten den Service neu:
+
+```service nginx restart```
+
 #### Certbot (SSL Zertifikat)
 
-#### PHP7.4
+Da die ganze Verbindung verschlüsselt ablaufen soll, mussten wir uns hier SSL Zertifikate beschaffen. Da wir mit Linux und nginx arbeiten, können wir dies mit dem Tool [Certbot](https://certbot.eff.org/) machen, das uns eigentlich die ganze Arbeit abnimmt.
+
+Certbot können wir folgendermassen installeiren:
+
+```apt install certbot-python3-nginx -y```
+
+Nach der Installation und der konfiguration des Web-Servers müssen wir nur noch certbot ausführen und den Anweisungen folgen:
+
+```certbot```
+
+Hier haben wir den automatischen redirect von HTTP auf HTTPS aktiviert um eine unverschlüsselte Verbindung zu vermeiden, auch wenn auf diese Applikationsinstanzen im normalfall nur durch interne Systeme ei9n zugriff vorgenommen wird. Dies ist also ein Punkt der Fehlkonfigurationen vermeidet.
+
+#### PHP 7.4
+
+Um PHP 7.4 auf Ubuntu 20.04 zu installieren haben wir apt verwendet:
+
+```apt install php7.4 php7.4-{fpm,mbstring,mysql,zip,mysql}```
+
+Der Bereich ```php7.4-{fpm,mbstring,mysql,zip,mysql}``` installiert alle benötigten Module für Composer und Laravel. Ohne diese Module würde unser Dienst nicht funktionieren.
+
+Mit dem aufrufen der PHP Version können wir prüfen ob die installation erfolgreich war:
+
+```php -v```
+
+Nun müssen wir noch den das "fpm" Modul starten:
+
+```service php7.4-fpm start```
+
+PHP ist jetzt ready-to-use und wir können zum nächsten Schritt weiter gehen.
 
 #### Composer
 
+
+
 #### Nodejs
+
+#### Laravel application deploy
 
 ### Datenbank-Server
