@@ -30,9 +30,9 @@ Als Datenbank haben wir uns für MySQL entschieden, MySQL ist über Ubuntu leich
 
 Nun können wir noch die konfiguration des MySQL servers anpassen um den Server alle Anfragen bearbeiten zu lassen. Hierfür müssen wir folgende Datei editieren:
 
-```/etc/mysql...```
+```/etc/mysql/mysql.conf.d/mysqld.cnf```
 
-Dort ändern wird ```mysql_bind_address``` und ```mysqlx_bind_address``` zu ```0.0.0.0```. Danach speichern wir die Datei.
+Dort ändern wird ```bind-address``` und ```mysqlx-bind-address``` zu ```0.0.0.0```. Danach speichern wir die Datei.
 
 Danach müssen wir den Service neu starten:
 
@@ -123,7 +123,7 @@ Auch hier überprüfen wir wieder die konfiguration mit ```nginx -t``` und start
 
 Da die ganze Verbindung verschlüsselt ablaufen soll, mussten wir uns hier SSL Zertifikate beschaffen. Da wir mit Linux und nginx arbeiten, können wir dies mit dem Tool [Certbot](https://certbot.eff.org/) machen, das uns eigentlich die ganze Arbeit abnimmt.
 
-Certbot können wir folgendermassen installeiren:
+Certbot können wir folgendermassen installieren:
 
 ```apt install certbot-python3-nginx -y```
 
@@ -227,7 +227,61 @@ Nachdem alle Pakete installiert wurden können wir die ```.env``` Datei für Lar
 
 ```cp .env.example .env```
 
-Nun müssen wir in der ```.env``` Datei folgende Angabena ausfüllen:
+Nun müssen wir in der ```.env``` Datei folgende Angaben wi ausfüllen:
+
+```
+APP_NAME=Alarm-Setter                       # Ausfüllen
+APP_ENV=prod                                # Auf "prod" setzen
+APP_KEY=                                    # Leer lassen
+APP_DEBUG=false                             # Auf false setzen
+APP_URL=https://[LOAD_BALANCER_URL]         # URL des Load Balancer einsetzen
+
+LOG_CHANNEL=stack
+LOG_LEVEL=debug
+
+SERVER_NAME="Alarm-2"                       # Server Name setzen (für Instanzerkennung)
+
+DB_CONNECTION=mysql                         # Auf MySQL lassen
+DB_HOST=                                    # DB Host einsetzen
+DB_PORT=3306                                # Port auf MySQL Port setzen
+DB_DATABASE=                                # Datenbank Name
+DB_USERNAME=                                # Datenbank Benutzername
+DB_PASSWORD=                                # Datenbank Passwort setzen
+
+BROADCAST_DRIVER=log                        # Bereich so lassen
+CACHE_DRIVER=file                           
+QUEUE_CONNECTION=sync
+SESSION_DRIVER=database
+SESSION_LIFETIME=120
+
+MEMCACHED_HOST=127.0.0.1
+
+REDIS_HOST=127.0.0.1
+REDIS_PASSWORD=null
+REDIS_PORT=6379
+
+MAIL_MAILER=smtp                            # Falls Mail-Server vorhanden hier Daten
+MAIL_HOST=mailhog                           # ausfüllen
+MAIL_PORT=1025
+MAIL_USERNAME=null
+MAIL_PASSWORD=null
+MAIL_ENCRYPTION=null
+MAIL_FROM_ADDRESS=null
+MAIL_FROM_NAME="${APP_NAME}"
+
+AWS_ACCESS_KEY_ID=                          # Bereich so lassen
+AWS_SECRET_ACCESS_KEY=
+AWS_DEFAULT_REGION=us-east-1
+AWS_BUCKET=
+
+PUSHER_APP_ID=
+PUSHER_APP_KEY=
+PUSHER_APP_SECRET=
+PUSHER_APP_CLUSTER=mt1
+
+MIX_PUSHER_APP_KEY="${PUSHER_APP_KEY}"
+MIX_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
+```
 
 Nach dem ausfüllen der ```.env``` Datei können wir den application-key generiern:
 
