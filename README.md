@@ -8,7 +8,7 @@ Hier ist die Dokumentation zum Modul 242 der Gruppe 3 (Zellweger, Docampo, Lippu
 * [Cloud](https://github.com/SayHeyD/M242/tree/main/Cloud)
 * [IoTKitV3](https://github.com/SayHeyD/M242/tree/main/IoTKitv3)
 * [Load Balancer](https://github.com/SayHeyD/M242/tree/main/Load%20Balancer)
-* [Selbst aufsetzen]()
+* [Selbst aufsetzen](https://github.com/SayHeyD/M242/tree/main/Projekt%20selbst%20aufsetzen)
 
 # Unser Wissenstand (K2)
 
