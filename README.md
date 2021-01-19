@@ -76,6 +76,10 @@ Ich denke, ich bin allgemein gut mit meinen Arbeiten für das Modul vorangekomme
 
 ## Andi
 
+Rückblickend war es eine coole Erfahrung so ein Projekt umzusetzen. Die Aufgabenkonnten, bis auf das ausser acht lassen der Bewertungskriterien, gut umgesetzt werden.
+Aktuell kann und werde ich solche Anwendungen in der Arbeitswelt nicht entwickeln, da ich in einem anderen Bereich arbeite. Ich denke jedoch, dass es im Privaten den ein oder 
+anderen Nutzen geben könnte ein solches Projekt anzugehen.
+
 # Unser Service (K5)
 
 Wir haben uns dafür entschieden einen Temperatur-Alarm mit dem IoT-Board umzusetzen. Das bedeutet, dass wir die Temperatur mittels des Sensors auf dem Board lesen und dann per REST API an eine Web-App übermitteln wollen.
