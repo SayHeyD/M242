@@ -20,6 +20,9 @@ Wir hatten in der Schule bereits ein Modul in welchen wir einen Raspberry Pi ver
 
 ## Andi
 
+Bis anhin habe ich noch nichts mit einem IoT-Board gemacht, sondern nur davon gehört. Dementsprechend habe ich damit keine Erfahrung.
+Ich wusste, dass es möglich ist kleinere Projekte und Aufgaben auf solchen Platinen zu entwickeln. Dass ich jedoch selber mal damit zu tun haben werde hätte ich nicht gedacht. Dennoch war ich auf diese Aufgaben gespannt, welche wir mit den IoT-Boards gemacht werden.
+
 # Wichtige Lernschritte (K6)
 
 ## Moritz
