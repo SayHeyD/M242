@@ -62,6 +62,10 @@ Auch konnte ich noch einiges über das Prinzip Laod Balancer lernen:
 
 ## Andi
 
+In diesem Modul habe ich grundlegende Erfahrungen bezüglich Mikroporzessoren gelernt.
+Zudem ist mir nun bewusst, dass solche Anwendungen viel mehr benutzt werden, als ich
+erwartet hatte. Nun weiss ich, wie Nginx als Load balancer benutzt werden kann.
+
 # Reflexion (K6)
 
 ## Moritz
