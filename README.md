@@ -33,6 +33,9 @@ Ich habe am meisten beim Programmieren der Applikation für den Mikroprozessor g
 
 ## Andi
 
+Mittels den Vorlagen welche wir erhalten haben, viel es mir einfach Aufgaben auf das IoT Board zu importieren. Nun habe ich eine Grundlegende Erfahrung in der Handhabung der Boards.
+Das Programmieren viel mir jedoch nicht einfach, da ich sehr wenig Programmierkenntnisse habe.
+
 # Persönliche Lernentwicklung (K6)
 
 ## Moritz
